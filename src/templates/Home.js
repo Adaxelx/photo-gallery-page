@@ -13,13 +13,27 @@ const Logo = styled.p`
   top: 50px;
   left: 20px;
   color: white;
+  opacity: 0;
   font-size: ${({ theme }) => theme.fontSize.s};
 `;
 
 const Home = () => {
+  const logo = React.createRef();
+
+  const animate = () => {
+    const tl = new TimelineMax();
+    const lg = logo.current;
+
+    tl.addLabel('logoAnim')
+      .to(lg, 0.1, { y: '-50px' })
+      .addLabel('showLogo')
+      .to(lg, 1, { y: '0px', opacity: 1 });
+  };
+
   return (
     <StyledHome>
-      <Logo>Asdfghjk lkjhgfd</Logo>
+      <Logo ref={logo}>Asdfghjk Pkjhgfd</Logo>
+      {setTimeout(() => animate(), 3000)}
     </StyledHome>
   );
 };
