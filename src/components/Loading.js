@@ -6,6 +6,8 @@ const StyledLoading = styled.section`
   height: 100vh;
   width: 100%;
   position: fixed;
+  top: 0;
+  z-index: 1;
   background-color: transparent;
 `;
 
