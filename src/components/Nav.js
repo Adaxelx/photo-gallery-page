@@ -3,18 +3,21 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { TimelineMax } from 'gsap/TweenMax';
 
-const StyledNav = styled(Link)`
+const StyledNav = styled.nav`
   position: fixed;
   top: 50px;
   right: 20px;
-  color: white;
-  z-index: 1;
   opacity: 0;
-  text-decoration: none;
-  font-size: ${({ theme }) => theme.fontSize.s};
+  z-index: 2;
 `;
 
-const Nav = () => {
+const Logo = styled(Link)`
+  color: white;
+  text-decoration: none;
+  font-size: ${({ theme }) => theme.fontSize.m};
+`;
+
+const Home = () => {
   const logo = React.createRef();
 
   const animate = () => {
@@ -22,19 +25,17 @@ const Nav = () => {
     const lg = logo.current;
 
     tl.addLabel('logoAnim')
-      .to(lg, 0.1, { y: '-50px' })
+      .to(lg, 0.1, { y: '-50px', rotation: '5deg' })
       .addLabel('showLogo')
-      .to(lg, 1, { y: '0px', opacity: 1 });
+      .to(lg, 1, { y: '0px', opacity: 1, rotation: '0deg' });
   };
 
   return (
-    <>
-      <StyledNav to="/about" ref={logo}>
-        O mnie
-      </StyledNav>
+    <StyledNav ref={logo}>
+      <Logo to="/about">O mnie</Logo>
       {setTimeout(() => animate(), 3000)}
-    </>
+    </StyledNav>
   );
 };
 
-export default Nav;
+export default Home;
