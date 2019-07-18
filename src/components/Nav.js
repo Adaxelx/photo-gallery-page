@@ -6,35 +6,44 @@ import { TimelineMax } from 'gsap/TweenMax';
 const StyledNav = styled.nav`
   position: fixed;
   top: 50px;
-  right: 20px;
+  width: 100%;
   opacity: 0;
   z-index: 2;
+  display: flex;
+  justify-content: space-between;
 `;
 
-const Logo = styled(Link)`
+const StyledLink = styled(Link)`
   color: white;
   text-decoration: none;
+  ${({ margin }) => margin}
   font-size: ${({ theme }) => theme.fontSize.m};
 `;
 
 const Home = () => {
   const logo = React.createRef();
-
   const animate = () => {
     const tl = new TimelineMax();
     const lg = logo.current;
 
     tl.addLabel('logoAnim')
-      .to(lg, 0.1, { y: '-50px', rotation: '5deg' })
+      .to(lg, 0.1, { y: '-50px' })
       .addLabel('showLogo')
-      .to(lg, 1, { y: '0px', opacity: 1, rotation: '0deg' });
+      .to(lg, 1, { y: '0px', opacity: 1 });
   };
 
   return (
-    <StyledNav ref={logo}>
-      <Logo to="/about">O mnie</Logo>
+    <>
+      <StyledNav ref={logo}>
+        <StyledLink margin="margin-left: 20px;" to="/">
+          Asdfghjk Pkjhgfd
+        </StyledLink>
+        <StyledLink margin="margin-right: 20px;" to="/about">
+          O mnie
+        </StyledLink>
+      </StyledNav>
       {setTimeout(() => animate(), 3000)}
-    </StyledNav>
+    </>
   );
 };
 
