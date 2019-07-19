@@ -14,13 +14,13 @@ const StyledNav = styled.nav`
 `;
 
 const StyledLink = styled(Link)`
-  color: white;
+  color: ${({ color }) => color};
   text-decoration: none;
   ${({ margin }) => margin}
   font-size: ${({ theme }) => theme.fontSize.m};
 `;
 
-const Nav = ({ loaded }) => {
+const Nav = ({ loaded, home, color, changeLoad }) => {
   const logo = React.createRef();
   const animate = () => {
     const tl = new TimelineMax();
@@ -34,15 +34,19 @@ const Nav = ({ loaded }) => {
 
   return (
     <>
-      <StyledNav ref={logo}>
-        <StyledLink margin="margin-left: 20px;" to="/">
+      <StyledNav home={home} ref={logo}>
+        <StyledLink onClick={changeLoad} color={color} margin="margin-left: 20px;" to="/">
           Asdfghjk Pkjhgfd
         </StyledLink>
-        <StyledLink margin="margin-right: 20px;" to="/about">
+        <StyledLink onClick={changeLoad} color={color} margin="margin-right: 20px;" to="/about">
           O mnie
         </StyledLink>
       </StyledNav>
-      {loaded ? setTimeout(() => animate(), 100) : setTimeout(() => animate(), 3000)}
+      {home
+        ? loaded
+          ? setTimeout(() => animate(), 100)
+          : setTimeout(() => animate(), 3000)
+        : setTimeout(() => animate(), 100)}
     </>
   );
 };

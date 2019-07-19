@@ -1,7 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
 import { TimelineMax } from 'gsap/TweenMax';
+
+import Nav from '../components/Nav';
 import Articles from './Articles';
+import Loading from '../components/Loading';
 
 const StyledHome = styled.main`
   height: 100vh;
@@ -11,11 +14,15 @@ const StyledHome = styled.main`
   top: 0;
 `;
 
-const Home = ({ loaded }) => {
+const Home = ({ loaded, changeLoad }) => {
   return (
-    <StyledHome>
-      <Articles loaded={loaded} />
-    </StyledHome>
+    <>
+      {loaded ? '' : <Loading />}
+      <Nav loaded={loaded} changeLoad={changeLoad} home color="white" />
+      <StyledHome>
+        <Articles loaded={loaded} />
+      </StyledHome>
+    </>
   );
 };
 

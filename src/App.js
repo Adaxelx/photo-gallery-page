@@ -4,8 +4,6 @@ import GlobalStyle from './theme/GlobalStyle';
 import { theme } from './theme/mainTheme';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
-import Nav from './components/Nav';
-import Loading from './components/Loading';
 import Home from './templates/Home';
 import Gallery from './components/Gallery';
 
@@ -26,33 +24,45 @@ class App extends React.Component {
     },
   ];
 
+  interval;
+
   state = {
     loaded: false,
   };
 
+  changeLoad = () => {
+    this.setState({ loaded: true });
+  };
+
   componentDidMount() {
-    setTimeout(() => this.setState({ loaded: true }), 3000);
+    const { loaded } = this.state;
+    this.interval = setTimeout(this.changeLoad, 3000);
+  }
+
+  componentWillUpdate() {
+    const { loaded } = this.state;
+    if (loaded) {
+      clearTimeout(this.interval);
+    }
   }
 
   render() {
     const { loaded } = this.state;
-    const { data } = this;
+    const { data, changeLoad } = this;
     const routes = data.map(art => (
       <Route
         key={art.path}
         path={art.path}
         exact
-        render={() => <Gallery title={art.title} images={art.images} nextArt={art.nextArt} />}
+        render={() => <Gallery title={art.title} changeLoad={changeLoad} images={art.images} nextArt={art.nextArt} />}
       />
     ));
     return (
       <ThemeProvider theme={theme}>
         <Router>
           <GlobalStyle />
-          <Nav loaded={loaded} />
-          <Loading />
           <Switch>
-            <Route path="/" exact render={() => <Home loaded={loaded} />} />
+            <Route path="/" exact render={() => <Home loaded={loaded} changeLoad={changeLoad} />} />
             {routes}
           </Switch>
         </Router>
