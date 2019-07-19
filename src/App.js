@@ -22,6 +22,7 @@ class App extends React.Component {
         subtitle: 'Spokojny dzień w domu',
         img: '',
         date: '19.07.2019r.',
+        src: '/articles/BP',
       },
     },
   ];

@@ -9,13 +9,37 @@ const StyledGallery = styled.section`
     width: 100%;
     position: absolute;
     top: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 `;
 
-const Gallery = ({ changeLoad }) => {
+const StyledTitle = styled.h2``;
+
+const StyledCon = styled.section``;
+
+const StyledConImg = styled.div``;
+
+const StyledImage = styled.img`
+  width: 90%;
+`;
+
+const StyledDescription = styled.h4``;
+
+const Gallery = ({ changeLoad, title, images, nextArt }) => {
+  const imagesArr = images.map(img => (
+    <StyledConImg>
+      <StyledImage src={img.src}></StyledImage>
+      <StyledDescription>{img.description}</StyledDescription>
+    </StyledConImg>
+  ));
+
   return (
     <>
       <Nav changeLoad={changeLoad} color="black" />
-      <StyledGallery></StyledGallery>
+      <StyledGallery>
+        <StyledCon>{imagesArr}</StyledCon>
+      </StyledGallery>
     </>
   );
 };

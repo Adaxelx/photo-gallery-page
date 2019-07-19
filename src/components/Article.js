@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-import img from '../images/WWa/fontanna.jpg';
 import { Link } from 'react-router-dom';
 
 const StyledArticle = styled.article`
@@ -35,15 +34,15 @@ const StyledSubtitle = styled.h2`
   font-size: ${({ theme }) => theme.fontSize.m};
 `;
 
-const Article = () => {
+const Article = ({ title, subtitle, img, date, src }) => {
   return (
-    <Link to="/articles/WWa">
+    <Link to={src}>
       <StyledArticle>
         <StyledImg src={img} />
         <StyledCon>
-          <StyledDate>18.07.2019</StyledDate>
-          <StyledTitle>Warszawa - Wisła</StyledTitle>
-          <StyledSubtitle>Krótki wyjazd przed studiami</StyledSubtitle>
+          <StyledDate>{date}</StyledDate>
+          <StyledTitle>{title}</StyledTitle>
+          <StyledSubtitle>{subtitle}</StyledSubtitle>
         </StyledCon>
       </StyledArticle>
     </Link>
