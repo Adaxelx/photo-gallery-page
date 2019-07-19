@@ -6,15 +6,15 @@ import Articles from './Articles';
 const StyledHome = styled.main`
   height: 100vh;
   width: 100%;
-  background-color: black;
+  background-color: ${({ theme }) => theme.bgColor}
   position: absolute;
   top: 0;
 `;
 
-const Home = () => {
+const Home = ({ loaded }) => {
   return (
     <StyledHome>
-      <Articles />
+      <Articles loaded={loaded} />
     </StyledHome>
   );
 };

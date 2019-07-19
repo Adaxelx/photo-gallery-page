@@ -20,7 +20,7 @@ const StyledLink = styled(Link)`
   font-size: ${({ theme }) => theme.fontSize.m};
 `;
 
-const Home = () => {
+const Nav = ({ loaded }) => {
   const logo = React.createRef();
   const animate = () => {
     const tl = new TimelineMax();
@@ -42,9 +42,9 @@ const Home = () => {
           O mnie
         </StyledLink>
       </StyledNav>
-      {setTimeout(() => animate(), 3000)}
+      {loaded ? setTimeout(() => animate(), 100) : setTimeout(() => animate(), 3000)}
     </>
   );
 };
 
-export default Home;
+export default Nav;

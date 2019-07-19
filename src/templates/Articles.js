@@ -12,7 +12,7 @@ const StyledContainer = styled.section`
   opacity: 0;
 `;
 
-const Articles = () => {
+const Articles = ({ loaded }) => {
   const con = React.createRef();
 
   const animate = () => {
@@ -28,7 +28,7 @@ const Articles = () => {
   return (
     <StyledContainer ref={con}>
       <Article />
-      {setTimeout(() => animate(), 3000)}
+      {loaded ? setTimeout(() => animate(), 100) : setTimeout(() => animate(), 3000)}
     </StyledContainer>
   );
 };
