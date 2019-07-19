@@ -4,6 +4,8 @@ import GlobalStyle from './theme/GlobalStyle';
 import { theme } from './theme/mainTheme';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
+/* ogarnąć te renderowanie tych rzeczy tak jak na stronie tamtej */
+
 import Home from './templates/Home';
 import Gallery from './components/Gallery';
 
@@ -24,8 +26,6 @@ class App extends React.Component {
     },
   ];
 
-  interval;
-
   state = {
     loaded: false,
   };
@@ -33,18 +33,6 @@ class App extends React.Component {
   changeLoad = () => {
     this.setState({ loaded: true });
   };
-
-  componentDidMount() {
-    const { loaded } = this.state;
-    this.interval = setTimeout(this.changeLoad, 3000);
-  }
-
-  componentWillUpdate() {
-    const { loaded } = this.state;
-    if (loaded) {
-      clearTimeout(this.interval);
-    }
-  }
 
   render() {
     const { loaded } = this.state;
