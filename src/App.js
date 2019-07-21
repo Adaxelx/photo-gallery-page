@@ -15,8 +15,12 @@ class App extends React.Component {
   data = [
     {
       title: 'Warszawa - Wisła',
-      images: [{ src: img, description: 'Park fontann' }],
+      images: [
+        { src: img, description: 'Multimedialny park fontann' },
+        { src: img, description: 'Multimedialny park fontann' },
+      ],
       path: '/articles/WWa',
+      date: '17-18.07.2019r.',
       nextArt: {
         title: 'Bielsko Podlaski zachód',
         subtitle: 'Spokojny dzień w domu',
@@ -43,7 +47,15 @@ class App extends React.Component {
         key={art.path}
         path={art.path}
         exact
-        render={() => <Gallery title={art.title} changeLoad={changeLoad} images={art.images} nextArt={art.nextArt} />}
+        render={() => (
+          <Gallery
+            title={art.title}
+            date={art.date}
+            changeLoad={changeLoad}
+            images={art.images}
+            nextArt={art.nextArt}
+          />
+        )}
       />
     ));
     return (

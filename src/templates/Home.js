@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-import { TimelineMax } from 'gsap/TweenMax';
 
 import Nav from '../components/Nav';
 import Articles from './Articles';

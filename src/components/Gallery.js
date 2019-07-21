@@ -1,11 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
+import { TimelineMax } from 'gsap/TweenMax';
 
 import Nav from './Nav';
 
 const StyledGallery = styled.section`
     background-color: ${({ theme }) => theme.bgArt}
-    height: 100vh;
     width: 100%;
     position: absolute;
     top: 0;
@@ -14,19 +14,58 @@ const StyledGallery = styled.section`
     align-items: center;
 `;
 
-const StyledTitle = styled.h2``;
-
-const StyledCon = styled.section``;
-
-const StyledConImg = styled.div``;
-
-const StyledImage = styled.img`
-  width: 90%;
+const StyledConTit = styled.section`
+  display: flex;
+  flex-direction: column;
 `;
 
-const StyledDescription = styled.h4``;
+const StyledTitle = styled.h2`
+  color: black;
+  z-index: 1;
+  margin-top: 100px;
+  font-size: ${({ theme }) => theme.fontSize.xl};
+`;
 
-const Gallery = ({ changeLoad, title, images, nextArt }) => {
+const StyledDate = styled.h3`
+  font-size: ${({ theme }) => theme.fontSize.m};
+  align-self: flex-end;
+`;
+
+const StyledCon = styled.section`
+  opacity: 0;
+  width: 95%;
+  margin-top: 50px;
+`;
+
+const StyledConImg = styled.section`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: ${({ theme }) => theme.marginBox};
+`;
+
+const StyledImage = styled.img`
+  width: 100%;
+`;
+
+const StyledDescription = styled.h4`
+  font-size: ${({ theme }) => theme.fontSize.m};
+  margin-top: ${({ theme }) => theme.marginContent};
+`;
+
+const Gallery = ({ changeLoad, title, images, nextArt, date }) => {
+  const con = React.createRef();
+
+  const animate = () => {
+    const cn = con.current;
+    const tl = new TimelineMax();
+
+    tl.addLabel('hide')
+      .to(cn, 0.1, { y: '50px' })
+      .addLabel('show')
+      .to(cn, 1, { y: '0px', opacity: 1 });
+  };
+
   const imagesArr = images.map(img => (
     <StyledConImg>
       <StyledImage src={img.src}></StyledImage>
@@ -38,8 +77,13 @@ const Gallery = ({ changeLoad, title, images, nextArt }) => {
     <>
       <Nav changeLoad={changeLoad} color="black" />
       <StyledGallery>
-        <StyledCon>{imagesArr}</StyledCon>
+        <StyledConTit>
+          <StyledTitle>{title}</StyledTitle>
+          <StyledDate>{date}</StyledDate>
+        </StyledConTit>
+        <StyledCon ref={con}>{imagesArr}</StyledCon>
       </StyledGallery>
+      {setTimeout(() => animate(), 100)}
     </>
   );
 };
