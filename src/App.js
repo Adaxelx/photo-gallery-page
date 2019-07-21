@@ -22,9 +22,9 @@ class App extends React.Component {
       path: '/articles/WWa',
       date: '17-18.07.2019r.',
       nextArt: {
-        title: 'Bielsko Podlaski zachód',
+        title: 'Bialski zachód',
         subtitle: 'Spokojny dzień w domu',
-        img: '',
+        img: img,
         date: '19.07.2019r.',
         src: '/articles/BP',
       },

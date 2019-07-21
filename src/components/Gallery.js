@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { TimelineMax } from 'gsap/TweenMax';
+import Article from '../components/Article';
 
 import Nav from './Nav';
 
@@ -53,6 +54,10 @@ const StyledDescription = styled.h4`
   margin-top: ${({ theme }) => theme.marginContent};
 `;
 
+const StyledNext = styled.h3`
+  font-size: ${({ theme }) => theme.fontSize.xl};
+  margin-bottom: ${({ theme }) => theme.marginBox};
+`;
 const Gallery = ({ changeLoad, title, images, nextArt, date }) => {
   const con = React.createRef();
 
@@ -82,6 +87,15 @@ const Gallery = ({ changeLoad, title, images, nextArt, date }) => {
           <StyledDate>{date}</StyledDate>
         </StyledConTit>
         <StyledCon ref={con}>{imagesArr}</StyledCon>
+        <StyledNext>Kolejna galeria</StyledNext>
+        <Article
+          src={nextArt.src}
+          next={true}
+          title={nextArt.title}
+          subtitle={nextArt.subtitle}
+          date={nextArt.date}
+          img={nextArt.img}
+        />
       </StyledGallery>
       {setTimeout(() => animate(), 100)}
     </>
