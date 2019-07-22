@@ -1,14 +1,24 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
+import { TimelineMax } from 'gsap/TweenMax';
 
 const StyledCon = styled.section`
   display: flex;
   flex-direction: column;
   align-items: center;
+  height: 10vh;
+  color: black;
+  opacity: 0;
+  margin-top: ${({ marginTop }) => marginTop};
 `;
 
-const Contener = ({ delay }) => {
+const Contener = ({ delay, value, marginTop }) => {
   const con = React.createRef();
+
+  useEffect(() => {
+    const timer = setTimeout(animate, 100);
+    return () => clearTimeout(timer);
+  });
 
   const animate = () => {
     const cn = con.current;
@@ -20,7 +30,13 @@ const Contener = ({ delay }) => {
       .to(cn, 1, { y: '0px', opacity: 1 });
   };
 
-  return <StyledCon ref={con} />;
+  return (
+    <>
+      <StyledCon marginTop={marginTop} ref={con}>
+        {value}
+      </StyledCon>
+    </>
+  );
 };
 
 export default Contener;

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import { TimelineMax } from 'gsap/TweenMax';
 
@@ -30,6 +30,11 @@ const StyledWord = styled.span`
 `;
 
 const Loading = () => {
+  useEffect(() => {
+    const timer = setTimeout(animate, 100);
+    return () => clearTimeout(timer);
+  });
+
   const con = React.createRef();
   const tit1 = React.createRef();
   const word1 = React.createRef();
@@ -78,7 +83,6 @@ const Loading = () => {
         <StyledTitles ref={tit2}>
           <StyledWord ref={word3}>Pasja do</StyledWord> <StyledWord ref={word4}>Zdjęć</StyledWord>
         </StyledTitles>
-        {setTimeout(() => animate(), 100)}
       </StyledCon>
     </StyledLoading>
   );

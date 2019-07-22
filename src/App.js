@@ -6,7 +6,8 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 /* ogarnąć te renderowanie tych rzeczy tak jak na stronie tamtej */
 
-import Home from './templates/Home';
+import Home from './templates/Home/Home';
+import About from './templates/About/About';
 import Gallery from './components/Gallery';
 
 import img from './images/WWa/fontanna.jpg';
@@ -64,6 +65,7 @@ class App extends React.Component {
           <GlobalStyle />
           <Switch>
             <Route path="/" exact render={() => <Home loaded={loaded} changeLoad={changeLoad} />} />
+            <Route path="/about" exact render={() => <About changeLoad={changeLoad} />} />
             {routes}
           </Switch>
         </Router>

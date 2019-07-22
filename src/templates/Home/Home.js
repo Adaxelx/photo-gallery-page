@@ -1,9 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import Nav from '../components/Nav';
+import Nav from '../../components/Nav';
 import Articles from './Articles';
-import Loading from '../components/Loading';
+import Loading from '../../components/Loading';
 
 const StyledHome = styled.main`
   height: 100vh;

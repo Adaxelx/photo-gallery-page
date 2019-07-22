@@ -1,10 +1,10 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import styled from 'styled-components';
 import { TimelineMax } from 'gsap/TweenMax';
 
-import Article from '../components/Article';
+import Article from '../../components/Article';
 
-import img from '../images/WWa/fontanna.jpg';
+import img from '../../images/WWa/fontanna.jpg';
 
 const StyledContainer = styled.section`
   position: relative;
@@ -16,6 +16,11 @@ const StyledContainer = styled.section`
 
 const Articles = ({ loaded }) => {
   const con = React.createRef();
+
+  useEffect(() => {
+    const timer = loaded ? setTimeout(animate, 100) : setTimeout(() => animate(), 3000);
+    return () => clearTimeout(timer);
+  });
 
   const data = [
     {
