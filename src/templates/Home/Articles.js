@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import { TimelineMax } from 'gsap/TweenMax';
 
@@ -46,12 +46,7 @@ const Articles = ({ loaded }) => {
     <Article src={art.src} title={art.title} subtitle={art.subtitle} date={art.date} img={art.img} key={art.title} />
   ));
 
-  return (
-    <StyledContainer ref={con}>
-      {articles}
-      {loaded ? setTimeout(() => animate(), 100) : setTimeout(() => animate(), 3000)}
-    </StyledContainer>
-  );
+  return <StyledContainer ref={con}>{articles}</StyledContainer>;
 };
 
 export default Articles;

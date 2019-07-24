@@ -6,12 +6,13 @@ import Con from '../../components/Contener';
 
 const StyledAbout = styled.article`
   position: absolute;
-  top: 0;
   height: 100vh;
   width: 100%;
   color: white;
   background-color: ${({ theme }) => theme.bgArt};
 `;
+
+const StyledTitle = styled.h2``;
 
 const About = ({ changeLoad }) => {
   return (

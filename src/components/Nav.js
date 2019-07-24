@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { TimelineMax } from 'gsap/TweenMax';
@@ -22,6 +22,12 @@ const StyledLink = styled(Link)`
 
 const Nav = ({ loaded, home, color, changeLoad }) => {
   const logo = React.createRef();
+
+  useEffect(() => {
+    const timer = setTimeout(animate, home ? (loaded ? 100 : 3000) : 100);
+    return () => clearTimeout(timer);
+  });
+
   const animate = () => {
     const tl = new TimelineMax();
     const lg = logo.current;
@@ -42,11 +48,6 @@ const Nav = ({ loaded, home, color, changeLoad }) => {
           O mnie
         </StyledLink>
       </StyledNav>
-      {home
-        ? loaded
-          ? setTimeout(() => animate(), 100)
-          : setTimeout(() => animate(), 3000)
-        : setTimeout(() => animate(), 100)}
     </>
   );
 };
