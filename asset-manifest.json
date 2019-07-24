@@ -1,0 +1,14 @@
+{
+  "files": {
+    "main.js": "/example-website/static/js/main.f9172cc3.chunk.js",
+    "main.js.map": "/example-website/static/js/main.f9172cc3.chunk.js.map",
+    "runtime~main.js": "/example-website/static/js/runtime~main.97ae9a98.js",
+    "runtime~main.js.map": "/example-website/static/js/runtime~main.97ae9a98.js.map",
+    "static/js/2.27584342.chunk.js": "/example-website/static/js/2.27584342.chunk.js",
+    "static/js/2.27584342.chunk.js.map": "/example-website/static/js/2.27584342.chunk.js.map",
+    "index.html": "/example-website/index.html",
+    "precache-manifest.3841deb826a06501681a2ec1c641e08b.js": "/example-website/precache-manifest.3841deb826a06501681a2ec1c641e08b.js",
+    "service-worker.js": "/example-website/service-worker.js",
+    "static/media/fontanna.jpg": "/example-website/static/media/fontanna.ef3b9d53.jpg"
+  }
+}
