@@ -43,7 +43,7 @@ class App extends React.Component {
   render() {
     const { loaded } = this.state;
     const { data, changeLoad } = this;
-    const routes = data.map(art => (
+    const routes = data.map((art, i) => (
       <Route
         key={art.path}
         path={art.path}
@@ -55,13 +55,14 @@ class App extends React.Component {
             changeLoad={changeLoad}
             images={art.images}
             nextArt={art.nextArt}
+            key={i}
           />
         )}
       />
     ));
     return (
       <ThemeProvider theme={theme}>
-        <Router>
+        <Router basename={process.env.PUBLIC_URL}>
           <GlobalStyle />
           <Switch>
             <Route path="/" exact render={() => <Home loaded={loaded} changeLoad={changeLoad} />} />

@@ -5,16 +5,15 @@ import Con from '../../components/Contener';
 
 const StyledAbout = styled.article`
   position: absolute;
-  height: 100vh;
   width: 100%;
   color: white;
   background-color: ${({ theme }) => theme.bgArt};
+  padding-bottom: 20px;
 `;
 
 const StyledContent = styled.section`
-  position: absolute;
   width: 100%;
-  top: 100px;
+  margin-top: 100px;
 `;
 
 const StyledTitle = styled.h2`
@@ -24,6 +23,20 @@ const StyledTitle = styled.h2`
   margin-left: 20px;
 `;
 
+const StyledSocCon = styled.section`
+  margin-top: ${({ theme }) => theme.marginBox}
+  display: flex;
+  align-items: center;
+  padding: 0 20px;
+  justify-content: space-between;
+`;
+
+const StyledLink = styled.a`
+  font-weight: bold;
+  text-decoration: underline;
+  color: black;
+  font-size: ${({ theme }) => theme.fontSize.l};
+`;
 const About = ({ changeLoad }) => {
   return (
     <>
@@ -31,6 +44,11 @@ const About = ({ changeLoad }) => {
       <StyledAbout>
         <StyledContent>
           <StyledTitle>Biologia, chemia, zdjęcia i rysunki</StyledTitle>
+          <StyledSocCon>
+            <StyledLink href="https://www.facebook.com/">Facebook</StyledLink>
+            <StyledLink href="https://www.facebook.com/">Instagram</StyledLink>
+            <StyledLink href="https://www.facebook.com/">Behance</StyledLink>
+          </StyledSocCon>
           <Con marginTop="30px" value="Te krótkie słowa dobrze opisują to co będzie mozna o mnie tu przeczytać" />
           <Con
             marginTop="30px"
