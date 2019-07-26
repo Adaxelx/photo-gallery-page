@@ -16,6 +16,7 @@ const StyledNav = styled.nav`
 const StyledLink = styled(Link)`
   color: ${({ color }) => color};
   text-decoration: none;
+  font-weight: bold;
   ${({ margin }) => margin}
   font-size: ${({ theme }) => theme.fontSize.m};
 `;

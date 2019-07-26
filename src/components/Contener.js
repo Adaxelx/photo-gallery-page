@@ -13,6 +13,9 @@ const StyledCon = styled.section`
   margin-left: 20px;
   margin-right: 20px;
   text-align: justify;
+  @media (orientation: landscape) and ${({ theme }) => theme.device.tablet} {
+    width: 50%;
+  }
 `;
 
 const Contener = ({ delay, value, marginTop }) => {

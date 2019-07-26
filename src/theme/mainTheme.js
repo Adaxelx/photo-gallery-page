@@ -16,7 +16,7 @@ export const theme = {
   },
   device: {
     mobileS: '(min-width: 320px)',
-    mobileM: '(min-width: 460px)',
+    mobileM: '(min-width: 640px)',
     tablet: '(min-width: 768px)',
     laptop: '(min-width: 1024px)',
     laptopL: '(min-width: 1280px)',
