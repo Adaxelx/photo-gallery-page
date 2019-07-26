@@ -14,6 +14,10 @@ const StyledAbout = styled.article`
 const StyledContent = styled.section`
   width: 100%;
   margin-top: 30px;
+  @media (orientation: landscape) and ${({ theme }) => theme.device.tablet} {
+    display: flex;
+    align-items: flex-start;
+  }
 `;
 
 const StyledTCon = styled.section`
@@ -54,6 +58,13 @@ const StyledSocCon = styled.section`
   flex-wrap: wrap;
   padding: 0 20px;
   justify-content: space-between;
+  @media (orientation: landscape) and ${({ theme }) => theme.device.tablet}{
+    width: 50%;
+  }
+`;
+
+const StyledConCtn = styled.section`
+  width: 100%;
 `;
 
 const StyledLink = styled.a`
@@ -62,22 +73,39 @@ const StyledLink = styled.a`
   color: black;
   font-size: ${({ theme }) => theme.fontSize.l};
 `;
+
+const StyledCheck = styled.div`
+  width: 100%;
+  @media (orientation: landscape) and ${({ theme }) => theme.device.tablet} {
+    width: 50%;
+  }
+`;
 class About extends React.Component {
   socials = React.createRef();
+  contener = React.createRef();
+
+  state = { active: false };
 
   handleScroll = () => {
-    const { socials } = this;
-
+    const { socials, contener } = this;
+    const { active } = this.state;
+    const width = window.innerWidth >= 768 ? 100 : 0;
     const scrollV = window.scrollY;
-    const offsetTop = socials.current.offsetTop;
-    console.log(offsetTop);
-    if (scrollV > offsetTop) {
-      socials.current.style.transform = `translateY(${scrollV - offsetTop}px)`;
+    const offsetTopS = socials.current.offsetTop;
+    const offsetTopC = contener.current.offsetTop;
+    if (!active && offsetTopC - window.innerHeight < scrollV) {
+      this.setState({
+        active: true,
+      });
+    }
+    if (scrollV + 100 > offsetTopS) {
+      socials.current.style.transform = `translateY(${scrollV - offsetTopS + width}px)`;
     }
   };
 
   componentDidMount() {
     const { handleScroll } = this;
+    handleScroll();
     window.addEventListener('scroll', handleScroll);
   }
 
@@ -88,7 +116,8 @@ class About extends React.Component {
 
   render() {
     const { changeLoad } = this.props;
-    const { socials } = this;
+    const { socials, contener } = this;
+    const { active } = this.state;
     return (
       <>
         <Nav color="black" changeLoad={changeLoad} />
@@ -96,34 +125,44 @@ class About extends React.Component {
           <StyledTCon>
             <StyledTitle>Biologia, chemia, zdjęcia i rysunki</StyledTitle>
           </StyledTCon>
-
-          <StyledSocCon ref={socials}>
-            <StyledLink href="https://www.facebook.com/">Facebook</StyledLink>
-            <StyledLink href="https://www.facebook.com/">Instagram</StyledLink>
-            <StyledLink href="https://www.facebook.com/">Behance</StyledLink>
-          </StyledSocCon>
           <StyledContent>
-            <Con marginTop="30px" value="Te krótkie słowa dobrze opisują to co będzie mozna o mnie tu przeczytać" />
-            <Con
-              marginTop="30px"
-              delay={0.2}
-              value="Jestem maturzyską po biol-chemie z zamiłowaniem do zdjęć. Fotografuję głównie swoje miasto rodzinnę i okolicę jednak zdarzają mi się bardziej 'egzotyczne' wyjazdy, które równiez dokumentuje"
-            />
-            <Con
-              marginTop="30px"
-              delay={0.4}
-              value="Aktualnie moim głównym zajęciem jest nauka i w najbliszym czasie początek studiów, jednak zawsze znajduje czas na zrobienie kilku zdjęć tu i tam, nawet jeśli odwiedzałam te miejsce wiele razy."
-            />
-            <Con
-              marginTop="30px"
-              delay={0.6}
-              value="Z samym robieniem zdjęć nigdy nie wiązałam przyszłości, ale jest to zainteresowanie, które sprawia mi olbrzymią przyjemność. Przez to czuję, ze mam nowe spojrzenie na wiele miejsc, które są dla mnie codziennością"
-            />
-            <Con
-              marginTop="30px"
-              delay={0.8}
-              value="Same zdjęcia robię od kilku lat jednak w wolnym czasie lubię tez potrenować naswoich ulubionych zajęciach oraz pojeździć na rolkach. Często tez czytam i ostatnio sprawdzam swoje siły w rysowaniu."
-            />
+            <StyledSocCon ref={socials}>
+              <StyledLink href="https://www.facebook.com/">Facebook</StyledLink>
+              <StyledLink href="https://www.facebook.com/">Instagram</StyledLink>
+              <StyledLink href="https://www.facebook.com/">Behance</StyledLink>
+            </StyledSocCon>
+            <StyledCheck ref={contener}>
+              {active ? (
+                <StyledConCtn>
+                  <Con
+                    marginTop="30px"
+                    value="Te krótkie słowa dobrze opisują to co będzie mozna o mnie tu przeczytać"
+                  />
+                  <Con
+                    marginTop="30px"
+                    delay={0.2}
+                    value="Jestem maturzyską po biol-chemie z zamiłowaniem do zdjęć. Fotografuję głównie swoje miasto rodzinnę i okolicę jednak zdarzają mi się bardziej 'egzotyczne' wyjazdy, które równiez dokumentuje"
+                  />
+                  <Con
+                    marginTop="30px"
+                    delay={0.4}
+                    value="Aktualnie moim głównym zajęciem jest nauka i w najbliszym czasie początek studiów, jednak zawsze znajduje czas na zrobienie kilku zdjęć tu i tam, nawet jeśli odwiedzałam te miejsce wiele razy."
+                  />
+                  <Con
+                    marginTop="30px"
+                    delay={0.6}
+                    value="Z samym robieniem zdjęć nigdy nie wiązałam przyszłości, ale jest to zainteresowanie, które sprawia mi olbrzymią przyjemność. Przez to czuję, ze mam nowe spojrzenie na wiele miejsc, które są dla mnie codziennością"
+                  />
+                  <Con
+                    marginTop="30px"
+                    delay={0.8}
+                    value="Same zdjęcia robię od kilku lat jednak w wolnym czasie lubię tez potrenować naswoich ulubionych zajęciach oraz pojeździć na rolkach. Często tez czytam i ostatnio sprawdzam swoje siły w rysowaniu."
+                  />
+                </StyledConCtn>
+              ) : (
+                ''
+              )}
+            </StyledCheck>
           </StyledContent>
         </StyledAbout>
       </>

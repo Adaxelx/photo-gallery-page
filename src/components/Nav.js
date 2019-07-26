@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import { TimelineMax } from 'gsap/TweenMax';
 
 const StyledNav = styled.nav`
@@ -13,12 +13,16 @@ const StyledNav = styled.nav`
   justify-content: space-between;
 `;
 
-const StyledLink = styled(Link)`
+const StyledLink = styled(NavLink)`
   color: ${({ color }) => color};
   text-decoration: none;
   font-weight: bold;
   ${({ margin }) => margin}
   font-size: ${({ theme }) => theme.fontSize.m};
+  &.is-active{
+    pointer-events: none;
+    cursor: default;
+  }
 `;
 
 const Nav = ({ loaded, home, color, changeLoad }) => {
@@ -42,10 +46,23 @@ const Nav = ({ loaded, home, color, changeLoad }) => {
   return (
     <>
       <StyledNav home={home} ref={logo}>
-        <StyledLink onClick={changeLoad} color={color} margin="margin-left: 20px;" to="/">
+        <StyledLink
+          onClick={changeLoad}
+          activeClassName="is-active"
+          exact
+          color={color}
+          margin="margin-left: 20px;"
+          to="/"
+        >
           Asdfghjk Pkjhgfd
         </StyledLink>
-        <StyledLink onClick={changeLoad} color={color} margin="margin-right: 20px;" to="/about">
+        <StyledLink
+          onClick={changeLoad}
+          activeClassName="is-active"
+          color={color}
+          margin="margin-right: 20px;"
+          to="/about"
+        >
           O mnie
         </StyledLink>
       </StyledNav>
