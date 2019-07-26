@@ -2,6 +2,10 @@ import React from 'react';
 import styled from 'styled-components';
 import Nav from '../../components/Nav';
 import Con from '../../components/Contener';
+import { TweenMax } from 'gsap/all';
+import { Transition } from 'react-transition-group';
+
+const startState = { autoAlpha: 0, y: -50 };
 
 const StyledAbout = styled.article`
   position: absolute;
@@ -14,7 +18,7 @@ const StyledAbout = styled.article`
 const StyledContent = styled.section`
   width: 100%;
   margin-top: 30px;
-  @media (orientation: landscape) and ${({ theme }) => theme.device.tablet} {
+  @media (orientation: landscape) and ${({ theme }) => theme.device.mobileM} {
     display: flex;
     align-items: flex-start;
   }
@@ -58,8 +62,9 @@ const StyledSocCon = styled.section`
   flex-wrap: wrap;
   padding: 0 20px;
   justify-content: space-between;
-  @media (orientation: landscape) and ${({ theme }) => theme.device.tablet}{
+  @media (orientation: landscape) and ${({ theme }) => theme.device.mobileM}{
     width: 50%;
+    
   }
 `;
 
@@ -76,7 +81,7 @@ const StyledLink = styled.a`
 
 const StyledCheck = styled.div`
   width: 100%;
-  @media (orientation: landscape) and ${({ theme }) => theme.device.tablet} {
+  @media (orientation: landscape) and ${({ theme }) => theme.device.mobileM} {
     width: 50%;
   }
 `;
@@ -89,7 +94,7 @@ class About extends React.Component {
   handleScroll = () => {
     const { socials, contener } = this;
     const { active } = this.state;
-    const width = window.innerWidth >= 768 ? 100 : 0;
+    const width = window.innerWidth >= 640 ? 100 : 0;
     const scrollV = window.scrollY;
     const offsetTopS = socials.current.offsetTop;
     const offsetTopC = contener.current.offsetTop;
@@ -98,7 +103,7 @@ class About extends React.Component {
         active: true,
       });
     }
-    if (scrollV + 100 > offsetTopS) {
+    if (scrollV + width > offsetTopS) {
       socials.current.style.transform = `translateY(${scrollV - offsetTopS + width}px)`;
     }
   };
@@ -115,13 +120,25 @@ class About extends React.Component {
   }
 
   render() {
-    const { changeLoad } = this.props;
+    const { changeLoad, show } = this.props;
     const { socials, contener } = this;
     const { active } = this.state;
     return (
-      <>
-        <Nav color="black" changeLoad={changeLoad} />
+      <Transition
+        unmountOnExit
+        in={show}
+        timeout={1000}
+        onEnter={node => TweenMax.set(node, startState)}
+        addEndListener={(node, done) => {
+          TweenMax.to(node, 0.5, {
+            autoAlpha: show ? 1 : 0,
+            y: show ? 0 : 50,
+            onComplete: done,
+          });
+        }}
+      >
         <StyledAbout>
+          <Nav color="black" changeLoad={changeLoad} />
           <StyledTCon>
             <StyledTitle>Biologia, chemia, zdjęcia i rysunki</StyledTitle>
           </StyledTCon>
@@ -165,7 +182,7 @@ class About extends React.Component {
             </StyledCheck>
           </StyledContent>
         </StyledAbout>
-      </>
+      </Transition>
     );
   }
 }

@@ -26,6 +26,9 @@ const StyledImgC = styled.div`
     background: linear-gradient(155deg, rgba(2, 0, 36, 1) 0%, rgba(136, 135, 152, 1) 63%, rgba(255, 255, 255, 1) 100%);
     opacity: 0.3;
   }
+  @media (orientation: landscape) {
+    width: 60%;
+  }
 `;
 
 const StyledImg = styled.img`

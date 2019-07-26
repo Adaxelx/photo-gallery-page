@@ -26,7 +26,6 @@ const Contener = ({ delay, value, marginTop }) => {
   const animate = () => {
     const cn = con.current;
     const tl = new TimelineMax();
-    console.log(delay);
     tl.addLabel('hide')
       .to(cn, 0.1, { y: '50px', delay: `${delay}` })
       .addLabel('show')

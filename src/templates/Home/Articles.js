@@ -8,8 +8,7 @@ import img from '../../images/WWa/fontanna.jpg';
 
 const StyledContainer = styled.section`
   position: relative;
-  top: 130px;
-  height: 50vh;
+  margin-top: 130px;
   width: 100%;
   opacity: 0;
 `;

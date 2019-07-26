@@ -2,8 +2,11 @@ import React from 'react';
 import styled from 'styled-components';
 import { TimelineMax } from 'gsap/TweenMax';
 import Article from '../components/Article';
-
+import { TweenMax } from 'gsap/all';
+import { Transition } from 'react-transition-group';
 import Nav from './Nav';
+
+const startState = { autoAlpha: 0, y: -50 };
 
 const StyledGallery = styled.section`
     background-color: ${({ theme }) => theme.bgArt}
@@ -46,7 +49,8 @@ const StyledConImg = styled.section`
 `;
 
 const StyledImage = styled.img`
-  width: 100%;
+  max-width: 100%;
+  max-height: 95vh;
 `;
 
 const StyledDescription = styled.h4`
@@ -54,7 +58,7 @@ const StyledDescription = styled.h4`
   margin-top: ${({ theme }) => theme.marginContent};
 `;
 
-const Gallery = ({ changeLoad, title, images, nextArt, date }) => {
+const Gallery = ({ changeLoad, title, images, nextArt, date, show }) => {
   const con = React.createRef();
 
   const animate = () => {
@@ -75,25 +79,39 @@ const Gallery = ({ changeLoad, title, images, nextArt, date }) => {
   ));
 
   return (
-    <>
-      <Nav changeLoad={changeLoad} color="black" />
-      <StyledGallery>
-        <StyledConTit>
-          <StyledTitle>{title}</StyledTitle>
-          <StyledDate>{date}</StyledDate>
-        </StyledConTit>
-        <StyledCon ref={con}>{imagesArr}</StyledCon>
-        <Article
-          src={nextArt.src}
-          next={true}
-          title={nextArt.title}
-          subtitle={nextArt.subtitle}
-          date={nextArt.date}
-          img={nextArt.img}
-        />
-      </StyledGallery>
-      {setTimeout(() => animate(), 100)}
-    </>
+    <Transition
+      unmountOnExit
+      in={show}
+      timeout={1000}
+      onEnter={node => TweenMax.set(node, startState)}
+      addEndListener={(node, done) => {
+        TweenMax.to(node, 0.5, {
+          autoAlpha: show ? 1 : 0,
+          y: show ? 0 : 50,
+          onComplete: done,
+        });
+      }}
+    >
+      <div>
+        <Nav changeLoad={changeLoad} color="black" />
+        <StyledGallery>
+          <StyledConTit>
+            <StyledTitle>{title}</StyledTitle>
+            <StyledDate>{date}</StyledDate>
+          </StyledConTit>
+          <StyledCon ref={con}>{imagesArr}</StyledCon>
+          <Article
+            src={nextArt.src}
+            next={true}
+            title={nextArt.title}
+            subtitle={nextArt.subtitle}
+            date={nextArt.date}
+            img={nextArt.img}
+          />
+        </StyledGallery>
+        {setTimeout(() => animate(), 100)}
+      </div>
+    </Transition>
   );
 };
 

@@ -44,11 +44,8 @@ class App extends React.Component {
     const { loaded } = this.state;
     const { data, changeLoad } = this;
     const routes = data.map((art, i) => (
-      <Route
-        key={art.path}
-        path={art.path}
-        exact
-        render={() => (
+      <Route key={art.path} path={art.path} exact>
+        {({ match }) => (
           <Gallery
             title={art.title}
             date={art.date}
@@ -56,17 +53,20 @@ class App extends React.Component {
             images={art.images}
             nextArt={art.nextArt}
             key={i}
+            show={match !== null}
           />
         )}
-      />
+      </Route>
     ));
     return (
       <ThemeProvider theme={theme}>
         <Router basename={process.env.PUBLIC_URL}>
           <GlobalStyle />
           <Switch>
-            <Route path="/" exact render={() => <Home loaded={loaded} changeLoad={changeLoad} />} />
-            <Route path="/about" exact render={() => <About changeLoad={changeLoad} />} />
+            <Route path="/" exact>
+              {({ match }) => <Home loaded={loaded} changeLoad={changeLoad} show={match !== null} />}
+            </Route>
+            <Route path="/about">{({ match }) => <About changeLoad={changeLoad} show={match !== null} />}</Route>
             {routes}
           </Switch>
         </Router>
