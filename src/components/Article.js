@@ -27,7 +27,9 @@ const StyledImgC = styled.div`
     opacity: 0.3;
   }
   @media (orientation: landscape) {
-    width: 60%;
+    width: 100%;
+    height: 60vh;
+    overflow: hidden;
   }
 `;
 
@@ -36,7 +38,7 @@ const StyledImg = styled.img`
 `;
 
 const StyledCon = styled.section`
-  width: auto;
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;

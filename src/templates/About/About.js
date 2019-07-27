@@ -18,14 +18,15 @@ const StyledAbout = styled.article`
 const StyledContent = styled.section`
   width: 100%;
   margin-top: 30px;
-  @media (orientation: landscape) and ${({ theme }) => theme.device.mobileM} {
+  @media (orientation: landscape) and ${({ theme }) => theme.device.mobileM},
+    (orientation: portrait) and ${({ theme }) => theme.device.tablet} {
     display: flex;
     align-items: flex-start;
   }
 `;
 
 const StyledTCon = styled.section`
-  @media (orientation: landscape) {
+  @media (orientation: landscape), (orientation: portrait) and ${({ theme }) => theme.device.tablet} {
     height: 100vh;
     width: 100%;
     display: flex;
@@ -42,11 +43,13 @@ const StyledTitle = styled.h2`
   @media (orientation: landscape){
     font-size: 6rem
   }
-  @media (orientation: landscape) and ${({ theme }) => theme.device.mobileM}{
+  @media (orientation: landscape) and ${({ theme }) => theme.device.mobileM},{
     width: 80%;
     font-size: 6rem
   }
-  @media (orientation: landscape) and ${({ theme }) => theme.device.tablet}{
+  @media (orientation: landscape) and ${({ theme }) => theme.device.tablet},
+  (orientation: portrait) and ${({ theme }) => theme.device.tablet}{
+    width: 80%;
     font-size: 8rem
   }
   @media (orientation: landscape) and ${({ theme }) => theme.device.laptop}{
@@ -62,7 +65,8 @@ const StyledSocCon = styled.section`
   flex-wrap: wrap;
   padding: 0 20px;
   justify-content: space-between;
-  @media (orientation: landscape) and ${({ theme }) => theme.device.mobileM}{
+  @media (orientation: landscape) and ${({ theme }) => theme.device.mobileM},
+  (orientation: portrait) and ${({ theme }) => theme.device.tablet}{
     width: 50%;
     
   }
@@ -81,7 +85,8 @@ const StyledLink = styled.a`
 
 const StyledCheck = styled.div`
   width: 100%;
-  @media (orientation: landscape) and ${({ theme }) => theme.device.mobileM} {
+  @media (orientation: landscape) and ${({ theme }) => theme.device.mobileM},
+    (orientation: portrait) and ${({ theme }) => theme.device.tablet} {
     width: 50%;
   }
 `;

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
 
 import Nav from '../../components/Nav';
@@ -18,6 +18,9 @@ const StyledHome = styled.main`
 `;
 
 const Home = ({ loaded, changeLoad, show }) => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   return (
     <Transition
       unmountOnExit

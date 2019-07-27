@@ -16,12 +16,22 @@ const StyledCon = styled.section`
   top: 30%;
   width: 100%;
   padding-left: 20px;
+  @media ${({ theme }) => theme.device.tablet} {
+    padding-left: 100px;
+  }
 `;
 
 const StyledTitles = styled.p`
     font-size: ${({ theme }) => theme.fontSize.xxl}
     color: transparent;
     -webkit-text-stroke: 1px white;
+    @media ${({ theme }) => theme.device.tablet}{
+      font-size: 5rem;
+    }
+    @media ${({ theme }) => theme.device.laptop}{
+      font-size: 6rem;
+    }
+    
 `;
 
 const StyledWord = styled.span`
