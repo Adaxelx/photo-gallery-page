@@ -64,7 +64,7 @@ const Gallery = ({ changeLoad, title, images, nextArt, date, show }) => {
   const animate = () => {
     const cn = con.current;
     const tl = new TimelineMax();
-
+    window.scrollTo(0, 0);
     tl.addLabel('hide')
       .to(cn, 0.1, { y: '50px' })
       .addLabel('show')

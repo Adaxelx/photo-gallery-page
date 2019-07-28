@@ -180,6 +180,7 @@ class About extends React.Component {
                     delay={0.8}
                     value="Same zdjęcia robię od kilku lat jednak w wolnym czasie lubię tez potrenować naswoich ulubionych zajęciach oraz pojeździć na rolkach. Często tez czytam i ostatnio sprawdzam swoje siły w rysowaniu."
                   />
+                  <Con marginTop="30px" delay={1} value="Mozna się ze mną skontaktować poprzez maila: lkjhg00@xd.pl" />
                 </StyledConCtn>
               ) : (
                 ''

@@ -13,23 +13,13 @@ const StyledContainer = styled.section`
   opacity: 0;
 `;
 
-const Articles = ({ loaded }) => {
+const Articles = ({ loaded, data }) => {
   const con = React.createRef();
 
   useEffect(() => {
     const timer = loaded ? setTimeout(animate, 100) : setTimeout(() => animate(), 3000);
     return () => clearTimeout(timer);
   });
-
-  const data = [
-    {
-      title: 'Warszawa - Wisła',
-      subtitle: 'Krótki wyjazd przed studiami',
-      img: img,
-      date: '18.07.2019',
-      src: '/articles/WWa',
-    },
-  ];
 
   const animate = () => {
     const cn = con.current;
@@ -42,7 +32,14 @@ const Articles = ({ loaded }) => {
   };
 
   const articles = data.map(art => (
-    <Article src={art.src} title={art.title} subtitle={art.subtitle} date={art.date} img={art.img} key={art.title} />
+    <Article
+      src={art.path}
+      title={art.title}
+      subtitle={art.subtitle}
+      date={art.date}
+      img={art.mainImg}
+      key={art.title}
+    />
   ));
 
   return <StyledContainer ref={con}>{articles}</StyledContainer>;

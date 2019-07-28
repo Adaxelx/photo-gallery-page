@@ -17,7 +17,7 @@ const StyledHome = styled.main`
   top: 0;
 `;
 
-const Home = ({ loaded, changeLoad, show }) => {
+const Home = ({ loaded, changeLoad, show, data }) => {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -39,7 +39,7 @@ const Home = ({ loaded, changeLoad, show }) => {
         {loaded ? '' : <Loading />}
         <Nav loaded={loaded} changeLoad={changeLoad} home color="white" />
 
-        <Articles loaded={loaded} />
+        <Articles data={data} loaded={loaded} />
       </StyledHome>
     </Transition>
   );

@@ -16,6 +16,8 @@ class App extends React.Component {
   data = [
     {
       title: 'Warszawa - Wisła',
+      subtitle: 'Krótki wyjazd przed studiami',
+      mainImg: img,
       images: [
         { src: img, description: 'Multimedialny park fontann' },
         { src: img, description: 'Multimedialny park fontann' },
@@ -28,6 +30,24 @@ class App extends React.Component {
         img: img,
         date: '19.07.2019r.',
         src: '/articles/BP',
+      },
+    },
+    {
+      title: 'Bialski zachód',
+      subtitle: 'Spokojny dzień w domu',
+      mainImg: img,
+      images: [
+        { src: img, description: 'Multimedialny park fontann' },
+        { src: img, description: 'Multimedialny park fontann' },
+      ],
+      path: '/articles/BP',
+      date: '22-23.07.2019r.',
+      nextArt: {
+        title: 'Warszawa - Wisła',
+        subtitle: 'Krótki wyjazd przed studiami',
+        img: img,
+        date: '19.07.2019r.',
+        src: '/articles/WWa',
       },
     },
   ];
@@ -64,7 +84,7 @@ class App extends React.Component {
           <GlobalStyle />
           <Switch>
             <Route path="/" exact>
-              {({ match }) => <Home loaded={loaded} changeLoad={changeLoad} show={match !== null} />}
+              {({ match }) => <Home data={data} loaded={loaded} changeLoad={changeLoad} show={match !== null} />}
             </Route>
             <Route path="/about">{({ match }) => <About changeLoad={changeLoad} show={match !== null} />}</Route>
             {routes}

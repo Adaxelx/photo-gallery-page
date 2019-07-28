@@ -9,6 +9,7 @@ const StyledArticle = styled.article`
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-top: ${({ theme }) => theme.marginBox};
 `;
 
 const StyledImgC = styled.div`
