@@ -15,6 +15,7 @@ const StyledHome = styled.main`
   background-color: ${({ theme }) => theme.bgColor}
   position: absolute;
   top: 0;
+  padding-bottom: 30px;
 `;
 
 const Home = ({ loaded, changeLoad, show, data }) => {
