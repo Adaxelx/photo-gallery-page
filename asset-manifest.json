@@ -1,14 +1,14 @@
 {
   "files": {
-    "main.js": "/example-website/static/js/main.28f14246.chunk.js",
-    "main.js.map": "/example-website/static/js/main.28f14246.chunk.js.map",
-    "runtime~main.js": "/example-website/static/js/runtime~main.97ae9a98.js",
-    "runtime~main.js.map": "/example-website/static/js/runtime~main.97ae9a98.js.map",
-    "static/js/2.2bb46de8.chunk.js": "/example-website/static/js/2.2bb46de8.chunk.js",
-    "static/js/2.2bb46de8.chunk.js.map": "/example-website/static/js/2.2bb46de8.chunk.js.map",
-    "index.html": "/example-website/index.html",
-    "precache-manifest.d0df805aa4d317a79f5563b3d0153a55.js": "/example-website/precache-manifest.d0df805aa4d317a79f5563b3d0153a55.js",
-    "service-worker.js": "/example-website/service-worker.js",
-    "static/media/fontanna.jpg": "/example-website/static/media/fontanna.ef3b9d53.jpg"
+    "main.js": "/photo-gallery-page/static/js/main.2bdb2bbc.chunk.js",
+    "main.js.map": "/photo-gallery-page/static/js/main.2bdb2bbc.chunk.js.map",
+    "runtime~main.js": "/photo-gallery-page/static/js/runtime~main.8b2364fa.js",
+    "runtime~main.js.map": "/photo-gallery-page/static/js/runtime~main.8b2364fa.js.map",
+    "static/js/2.51975d83.chunk.js": "/photo-gallery-page/static/js/2.51975d83.chunk.js",
+    "static/js/2.51975d83.chunk.js.map": "/photo-gallery-page/static/js/2.51975d83.chunk.js.map",
+    "index.html": "/photo-gallery-page/index.html",
+    "precache-manifest.9809c017ad1dec9ef547a3f03b539af2.js": "/photo-gallery-page/precache-manifest.9809c017ad1dec9ef547a3f03b539af2.js",
+    "service-worker.js": "/photo-gallery-page/service-worker.js",
+    "static/media/fontanna.jpg": "/photo-gallery-page/static/media/fontanna.ef3b9d53.jpg"
   }
 }
